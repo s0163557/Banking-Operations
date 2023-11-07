@@ -1,0 +1,21 @@
+﻿@using Banking_Operations.Models;
+@model LoginModel;
+<h1>Авторизация</h1>
+
+@if (TempData["Error"] != null)
+{
+    <div>
+    <span><b>Извините!</b> - @TempData["Error"]</span>
+    </div>
+}
+
+<form method="post" asp-controller="Account" asp-action="Login">
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" />
+    <span asp-validation-for="Password"></span>
+    <input type="submit" value="Отправить" />
+</form>
