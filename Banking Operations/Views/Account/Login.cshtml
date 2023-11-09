@@ -5,7 +5,7 @@
 @if (TempData["Error"] != null)
 {
     <div>
-    <span><b>Извините!</b> - @TempData["Error"]</span>
+        <span><b>Извините!</b> - <font color="red">@TempData["Error"]</font></span>
     </div>
 }
 
@@ -18,4 +18,5 @@
     <input asp-for="Password" />
     <span asp-validation-for="Password"></span>
     <input type="submit" value="Отправить" />
+    <p>Нет аккаунта? Вы можете <a href="/Account/Register">зарегистрироваться!</a></p>
 </form>

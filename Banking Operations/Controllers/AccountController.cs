@@ -51,5 +51,46 @@ namespace Banking_Operations.Controllers
             return View(loginModel);
         }
 
+        public IActionResult Register()
+        {
+            var response = new RegisterModel();
+            return View(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterModel registerModel)
+        {
+            if (!ModelState.IsValid) 
+                return View(registerModel);
+
+            var user = await _clientManager.FindByEmailAsync(registerModel.Email);
+            if (user != null)
+            {
+                TempData["Error"] = "Этот пользователь уже зарегистрирован в системе!";
+                return View(registerModel);
+            }
+
+            var newUser = new Client()
+            {
+                Email = registerModel.Email,
+                UserName = registerModel.Email
+            };
+            var newUserResponse = await _clientManager.CreateAsync(newUser, registerModel.Password);
+
+            if (newUserResponse.Succeeded)
+                await _clientManager.AddToRoleAsync(newUser, ClientRoles.User);
+            else
+                TempData["Error"] = IdentityResult.Failed(newUserResponse.Errors.ToArray());
+
+            return View("Login");
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        { 
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        
+        }
     }
 }

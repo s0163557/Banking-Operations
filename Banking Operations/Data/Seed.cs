@@ -13,38 +13,42 @@ namespace Banking_Operations.Data
                 //Roles
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-                if (!await roleManager.RoleExistsAsync(ClientRoles.Admin))
-                    await roleManager.CreateAsync(new IdentityRole(ClientRoles.Admin));
-                if (!await roleManager.RoleExistsAsync(ClientRoles.User))
-                    await roleManager.CreateAsync(new IdentityRole(ClientRoles.User));
-
+                if (roleManager.Roles.Count() == 0)
+                {
+                    if (!await roleManager.RoleExistsAsync(ClientRoles.Admin))
+                        await roleManager.CreateAsync(new IdentityRole(ClientRoles.Admin));
+                    if (!await roleManager.RoleExistsAsync(ClientRoles.User))
+                        await roleManager.CreateAsync(new IdentityRole(ClientRoles.User));
+                }
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<Client>>();
-                string adminUserEmail = "AdminName@gmail.com";
-
-                var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
-                if (adminUser == null)
+                if (userManager.Users.Count() == 0)
                 {
-                    var newAdminUser = new Client()
+                    string adminUserEmail = "AdminName@gmail.com";
+
+                    var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
+                    if (adminUser == null)
                     {
-                        UserName = "admin",
-                        Email = adminUserEmail,
-                        EmailConfirmed = true,
-                        Passport = 0,
-                        Adress = null,
-                        Services = null
-                    };
-                    await userManager.CreateAsync(newAdminUser, "admin");
-                    await userManager.AddToRoleAsync(newAdminUser, ClientRoles.Admin);
-                }
+                        var newAdminUser = new Client()
+                        {
+                            UserName = "admin",
+                            Email = adminUserEmail,
+                            EmailConfirmed = true,
+                            Passport = 0,
+                            Adress = null,
+                            Services = null
+                        };
+                        await userManager.CreateAsync(newAdminUser, "Admin12345!");
+                        await userManager.AddToRoleAsync(newAdminUser, ClientRoles.Admin);
+                    }
 
-                var context = serviceScope.ServiceProvider.GetService<ApplicationDBContext>();
+                    var context = serviceScope.ServiceProvider.GetService<ApplicationDBContext>();
 
-                context.Database.EnsureCreated();
+                    context.Database.EnsureCreated();
 
-                if (!context.BankServices.Any())
-                {
-                    context.BankServices.AddRange(new List<BankService>()
+                    if (!context.BankServices.Any())
+                    {
+                        context.BankServices.AddRange(new List<BankService>()
                     {
                         new BankService()
                         {
@@ -55,24 +59,25 @@ namespace Banking_Operations.Data
                             BankServiceStatus = true
                         }
                     }); ;
-                }
-                context.SaveChanges();
+                    }
+                    context.SaveChanges();
 
-                string appUserEmail = "UserName@gmail.com";
+                    string appUserEmail = "UserName@gmail.com";
 
-                var appUser = await userManager.FindByEmailAsync(appUserEmail);
-                if (appUser == null)
-                {
-                    var newAppUser = new Client()
+                    var appUser = await userManager.FindByEmailAsync(appUserEmail);
+                    if (appUser == null)
                     {
-                        UserName = "userX",
-                        Email = appUserEmail,
-                        EmailConfirmed = true,
-                        Passport = 0000111111,
-                        Adress = ""
-                    };
-                    await userManager.CreateAsync(newAppUser, "qwerty12345");
-                    await userManager.AddToRoleAsync(newAppUser, ClientRoles.User);
+                        var newAppUser = new Client()
+                        {
+                            UserName = "userX",
+                            Email = appUserEmail,
+                            EmailConfirmed = true,
+                            Passport = 0000111111,
+                            Adress = ""
+                        };
+                        await userManager.CreateAsync(newAppUser, "Qwerty12345!");
+                        await userManager.AddToRoleAsync(newAppUser, ClientRoles.User);
+                    }
                 }
             }
         }
