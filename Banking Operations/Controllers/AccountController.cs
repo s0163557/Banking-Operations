@@ -35,7 +35,7 @@ namespace Banking_Operations.Controllers
                 var passwordCheck = await _clientManager.CheckPasswordAsync(client, loginModel.Password);
                 if (passwordCheck)
                 {
-                    //Пароль найден, передрисация
+                    //Пароль найден, переадресация
                     var result = await _signInManager.PasswordSignInAsync(client, loginModel.Password, false, false);
                     if (result.Succeeded)
                     { 

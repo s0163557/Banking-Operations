@@ -1,0 +1,17 @@
+﻿@using Banking_Operations.Data;
+@model IEnumerable<BankService>
+
+<h1>Сервисы для зарегистрированных пользователей</h1>
+<div class="row">
+    <div class="column">
+        @foreach(var item in Model)
+        {
+        <label>@item.BankServiceName</label>
+        }
+    </div>
+    <div class="column">
+<a href="/">Пересмотр комиссии</a>
+<a href="/">Погашение задолженности</a>
+<a href="/">Смена статуса предоставления услуги</a>
+    </div>
+</div>

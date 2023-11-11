@@ -73,7 +73,7 @@ namespace Banking_Operations.Data
                             Email = appUserEmail,
                             EmailConfirmed = true,
                             Passport = 0000111111,
-                            Adress = ""
+                            Adress = null
                         };
                         await userManager.CreateAsync(newAppUser, "Qwerty12345!");
                         await userManager.AddToRoleAsync(newAppUser, ClientRoles.User);

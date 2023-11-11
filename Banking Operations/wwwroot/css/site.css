@@ -106,3 +106,12 @@ footer {
     background: #333;
     border-top: 2px solid #000;
 }
+
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 50%;
+}

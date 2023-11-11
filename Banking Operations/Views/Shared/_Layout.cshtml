@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using Banking_Operations.Data
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Client> SignInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -12,10 +16,31 @@
            Bank operations
        </span>
        <nav>
-           <a href="/">Главная</a>
-           <a href="/Contacts">Обратная связь</a>
-           <a href="/Account/Login">Войти</a>
-       </nav>
+            <form asp-controller="Home" asp-action="Index">
+                <button>Главная</button>
+            </form>
+            <form asp-controller="Contacts" asp-action="Index">
+                <button>Свяжитесь с нами!</button>
+            </form>
+           @if (!SignInManager.IsSignedIn(User))
+            {
+                <form asp-controller="Account" asp-action="Login">
+                    <button>Войти</button>
+                </form>
+                <form asp-controller="Account" asp-action="Register">
+                    <button>Зарегестрироваться</button>
+                </form>
+            }
+            else
+            {
+                <form asp-controller="Banking" asp-action="Index">
+                    <button>Банковские услуги</button>
+                </form>
+                <form asp-controller="Account" asp-action="Logout">
+                    <button>Выйти</button>
+                </form>
+            }
+        </nav>
    </Header>
    <main>
        @RenderBody()
