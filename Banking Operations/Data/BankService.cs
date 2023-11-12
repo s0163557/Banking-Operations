@@ -13,6 +13,6 @@ namespace Banking_Operations.Data
         public int? Debt { get; set; }
         public bool? BankServiceStatus { get; set; }
         [ForeignKey("Client")]
-        public string ClientId { get; set; }
+        public string? ClientId { get; set; }
     }
 }

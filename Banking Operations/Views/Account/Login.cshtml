@@ -1,22 +1,30 @@
 ﻿@using Banking_Operations.Models;
 @model LoginModel;
-<h1>Авторизация</h1>
+<link href="../../dist/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/css/signin.css" asp-append-version="true" />
 
-@if (TempData["Error"] != null)
-{
-    <div>
-        <span><b>Извините!</b> - <font color="red">@TempData["Error"]</font></span>
+<div class="special">
+    <div class="text-center">
+        <form class="form-signin" method="post" asp-controller="Account" asp-action="Login">
+            @if (TempData["Error"] != null)
+            {
+                <div>
+                    <span><b>Извините!</b> - <font color="red">@TempData["Error"]</font></span>
+                </div>
+            }
+            <h1 class="h3 mb-3 font-weight-normal">Авторизация</h1>
+            <input asp-for="Email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <span asp-validation-for="Email"></span>
+            <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <span asp-validation-for="Password"></span>
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
     </div>
-}
+</div>
 
-<form method="post" asp-controller="Account" asp-action="Login">
-    <label asp-for="Email"></label>
-    <input asp-for="Email" />
-    <span asp-validation-for="Email"></span>
 
-    <label asp-for="Password"></label>
-    <input asp-for="Password" />
-    <span asp-validation-for="Password"></span>
-    <input type="submit" value="Отправить" />
-    <p>Нет аккаунта? Вы можете <a href="/Account/Register">зарегистрироваться!</a></p>
-</form>

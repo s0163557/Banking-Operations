@@ -8,7 +8,7 @@ namespace Banking_Operations.Controllers
     public class BankingController : Controller
     {
         private IBankServicesRepository _repository;
-        BankingController(IBankServicesRepository repository) 
+        public BankingController(IBankServicesRepository repository) 
         {
             _repository = repository;
         }
