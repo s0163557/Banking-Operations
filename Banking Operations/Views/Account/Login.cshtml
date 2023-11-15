@@ -2,7 +2,7 @@
 @model LoginModel;
 <link href="../../dist/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/css/signin.css" asp-append-version="true" />
-
+<h1>Авторизация</h1>
 <div class="special">
     <div class="text-center">
         <form class="form-signin" method="post" asp-controller="Account" asp-action="Login">
@@ -12,7 +12,6 @@
                     <span><b>Извините!</b> - <font color="red">@TempData["Error"]</font></span>
                 </div>
             }
-            <h1 class="h3 mb-3 font-weight-normal">Авторизация</h1>
             <input asp-for="Email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
             <span asp-validation-for="Email"></span>
             <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>

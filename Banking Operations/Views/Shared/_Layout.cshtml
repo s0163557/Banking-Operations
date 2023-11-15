@@ -3,7 +3,7 @@
 @inject SignInManager<Client> SignInManager
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
@@ -12,56 +12,52 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/test.styles.css" asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Contacts" asp-action="Index">Свяжитесь с нами!</a>
-                        </li>
-                        @if (!SignInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Зарегистрироваться</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Banking" asp-action="Index">Услуги</a>
-                            </li>
-                            <form asp-controller="Account" asp-action="Logout">
-                                <button class ="btn btn-outline-danger my-2 my-sm-0">Выйти</button>
-                            </form>
+<body class="d-flex h-100 text-center text-white bg-dark ">
+    <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto cover-container">
+            <div>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <div class="container-fluid">
+                    <a aria-current="page" class="navbar-brand float-md-start mb-0" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                aria-current="page" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                            @*<a class="nav-link " asp-area="" asp-controller="Contacts" asp-action="Index">Свяжитесь с нами!</a>*@
+                            @if (!SignInManager.IsSignedIn(User))
+                            {
+                                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
 
-                        }
-                    </ul>
+                                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Register">Зарегистрироваться</a>
+                            }
+                            else
+                            {
+                                    <a class="nav-link " asp-area="" asp-controller="Banking" asp-action="Index">Услуги</a>
+                                <form asp-controller="Account" asp-action="Logout">
+                                    <button class="btn btn-outline-danger my-2 my-sm-0">Выйти</button>
+                                </form>
+
+                            }
+                    </div>
                 </div>
+            </nav>
             </div>
-        </nav>
-    </header>
+        </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
+        <div class="container d-flex justify-content-center align-items-center h-100">
+        <main role="main" class="px-3">
             @RenderBody()
         </main>
-    </div>
+        </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="mt-auto footer text-white-5">
         <div class="container">
             &copy; 2023 - Banking Operations - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+    </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -36,8 +36,18 @@ namespace Banking_Operations.Data
                             EmailConfirmed = true,
                             Passport = 0,
                             Adress = null,
-                            Services = null
-                        };
+                            Services = new List<BankService>
+                            {
+                            new BankService()
+                            {
+                                BankServiceName = "Денежный перевод",
+                                TermOfRendering = "2022/07/14",
+                                ComissionType = "Fixed Price",
+                                Debt = 0,
+                                BankServiceStatus = true
+                            }
+                        }
+                    };
                         await userManager.CreateAsync(newAdminUser, "Admin12345!");
                         await userManager.AddToRoleAsync(newAdminUser, ClientRoles.Admin);
                     }

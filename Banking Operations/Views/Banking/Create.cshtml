@@ -1,0 +1,23 @@
+﻿@model BankingModel;
+<h1>Создание услуги</h1>
+<div class="special">
+    <div class="text-center">
+        <form class="form-signin" method="post" asp-controller="Banking" asp-action="Create">
+            @if (TempData["Error"] != null)
+            {
+                <div>
+                    <span><b>Извините!</b> - <font color="red">@TempData["Error"]</font></span>
+                </div>
+            }
+            <input asp-for="BankServiceName" type="email" id="inputEmail" class="form-control" placeholder="Название услуги" required autofocus>
+            <span asp-validation-for="BankServiceName"></span>
+            <input asp-for="TermOfRendering" type="email" id="inputEmail" class="form-control" placeholder="Условия" required>
+            <span asp-validation-for="TermOfRendering"></span>
+            <input asp-for="ComissionType" type="email" id="inputEmail" class="form-control" placeholder="Комиссия" required>
+            <span asp-validation-for="ComissionType"></span>
+            <input asp-for="Debt" type="email" id="inputEmail" class="form-control" placeholder="Долг" required>
+            <span asp-validation-for="Debt"></span>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        </form>
+    </div>
+</div>
