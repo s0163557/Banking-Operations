@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/test.styles.css" asp-append-version="true" />
 </head>
-<body class="d-flex h-100 text-center text-white bg-dark ">
+<body class="d-flex h-100 text-center text-white bg-dark overflow-hidden">
     <div class="d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto cover-container">
             <div>
@@ -35,7 +35,7 @@
                             {
                                     <a class="nav-link " asp-area="" asp-controller="Banking" asp-action="Index">Услуги</a>
                                 <form asp-controller="Account" asp-action="Logout">
-                                    <button class="btn btn-outline-danger my-2 my-sm-0">Выйти</button>
+                                    <button class="btn btn-outline-danger mx-3 my-sm-0">Выйти</button>
                                 </form>
 
                             }

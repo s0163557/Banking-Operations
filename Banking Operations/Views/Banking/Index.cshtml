@@ -1,24 +1,45 @@
 ﻿@using Banking_Operations.Data;
 @model IEnumerable<BankService>
 <link rel="stylesheet" href="~/css/gridrows.css" asp-append-version="true" />
+<h2>@User.Identity.Name</h2>
 <h1>Сервисы для зарегистрированных пользователей</h1>
+@*if (User.Identity.IsAuthenticated && User.IsInRole("admin"))*@
+@*{*@
+    <form method="get" asp-controller="Banking" asp-action="Create">
+        <button class="btn btn-outline-light my-3 my-sm-0">Создать</button>
+    </form>
+@*}*@
 
-<form asp-controller="Banking" asp-action="Create">
-    <button class="btn btn-outline-white my-2 my-sm-0">Выйти</button>
-</form>
+<div class="overflow-auto" style="height:600px">
 
-@foreach (var item in Model)
-{
-    <label>@item.BankServiceName</label>
-    <div class="row mb-3">
-        <div class="col-4 themed-grid-col text-white-5">@item.BankServiceName</div>
-        <div class="col-4 themed-grid-col text-white-5">@item.BankServiceStatus</div>
-        <div class="col-4 themed-grid-col text-white-5">
-            <button>Пересмотр комиссии</button>
-            <button>Погашение задолженности</button>
-            <button>Смена статуса предоставления услуги</button>
-            <button>Удалить</button>
-        </div>
+    <div class="row my-3">
+        <div class="col-sm themed-grid-col text-white-5 bg-dark">Название услуги</div>
+        <div class="col-sm themed-grid-col text-white-5 bg-dark">Тип комиссии</div>
+        <div class="col-sm themed-grid-col text-white-5 bg-dark">Задолжность</div>
+        <div class="col-sm themed-grid-col text-white-5 bg-dark">Статус услуги</div>
+        <div class="col-lg themed-grid-col text-white-5 bg-dark">Действия с услугой</div>
     </div>
 
-}
+    @foreach (var item in Model)
+    {
+        <div class="row mb-3">
+            <div class="col-sm themed-grid-col text-white-5 bg-dark">@item.BankServiceName</div>
+            <div class="col-sm themed-grid-col text-white-5 bg-dark">@item.ComissionType</div>
+            <div class="col-sm themed-grid-col text-white-5 bg-dark">@item.Debt p.</div>
+            <div class="col-sm themed-grid-col text-white-5 bg-dark">@item.BankServiceStatus</div>
+            <div class="col-lg themed-grid-col text-white-5 bg-dark">
+                @*
+                <button>Пересмотр комиссии</button>
+                <button>Погашение задолженности</button>
+                <button>Смена статуса предоставления услуги</button>
+            *@
+                <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Banking" asp-action="Edit" asp-route-id="@item.Id">
+                    Изменить
+                </a>
+                <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Banking" asp-action="Delete" asp-route-id="@item.Id">
+                    Удалить
+                </a>
+            </div>
+        </div>
+    }
+</div>

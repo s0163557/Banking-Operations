@@ -1,0 +1,36 @@
+﻿@model BankingModel;
+
+<h1>Удаление</h1>
+<div class="special">
+    <div class="text-center">
+        <form class="form-signin" method="post" asp-controller="Banking" asp-action="Delete">
+            @if (TempData["Error"] != null)
+            {
+                <div>
+                    <span><b>Извините!</b> - <font color="red">@TempData["Error"]</font></span>
+                </div>
+            }
+            <input disabled asp-for="BankServiceName" id="inputEmail" class="form-control my-3" placeholder="Название услуги" required autofocus>
+            <span asp-validation-for="BankServiceName"></span>
+            <input disabled asp-for="TermOfRendering" id="inputEmail" class="form-control my-3" placeholder="Условия" required>
+            <span asp-validation-for="TermOfRendering"></span>
+
+            <select disabled asp-for="ComissionType" class="form-select">
+                <option selected value="50 р.">50 р.</option>
+                <option value="100 р.">100 р.</option>
+                <option value="1000 р.">1000 р.</option>
+                <option value="10%">10%</option>
+                <option value="15%">15%</option>
+            </select>
+            <span asp-validation-for="ComissionType"></span>
+
+            <input disabled asp-for="Debt" type="number" id="inputEmail" class="form-control my-3" placeholder="Долг" required>
+            <span asp-validation-for="Debt"></span>
+        </form>
+
+        <form class="form-signin" method="post" asp-controller="Banking" asp-action="Delete">
+            <input disabled asp-for="ServiceID" type="number" id="inputEmail" class="form-control my-3" placeholder="Долг" required>
+            <button class="btn btn-lg btn-primary btn-block my-3" type="submit">Delete</button>
+        </form>
+    </div>
+</div>

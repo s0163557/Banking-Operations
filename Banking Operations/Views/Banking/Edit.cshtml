@@ -1,17 +1,18 @@
 ﻿@model BankingModel;
-<h1>Создание услуги</h1>
+
+<h1>Редактирование</h1>
 <div class="special">
     <div class="text-center">
-        <form class="form-signin" method="post" asp-controller="Banking" asp-action="Create">
+        <form class="form-signin" method="post" asp-controller="Banking" asp-action="Edit">
             @if (TempData["Error"] != null)
             {
                 <div>
                     <span><b>Извините!</b> - <font color="red">@TempData["Error"]</font></span>
                 </div>
             }
-            <input asp-for="BankServiceName" id="inputEmail" class="form-control my-3" placeholder="Название услуги" required autofocus>
+            <input asp-for="BankServiceName" class="form-control my-3" placeholder="Название услуги" required autofocus>
             <span asp-validation-for="BankServiceName"></span>
-            <input asp-for="TermOfRendering" id="inputEmail" class="form-control my-3" placeholder="Условия" required>
+            <input asp-for="TermOfRendering" class="form-control my-3" placeholder="Условия" required>
             <span asp-validation-for="TermOfRendering"></span>
 
             <select asp-for="ComissionType" class="form-select">
@@ -23,9 +24,11 @@
             </select>
             <span asp-validation-for="ComissionType"></span>
 
-            <input asp-for="Debt" type="number" id="inputEmail" class="form-control my-3" placeholder="Долг" required>
+            <input asp-for="Debt" type="number" class="form-control my-3" placeholder="Долг" required>
             <span asp-validation-for="Debt"></span>
-            <button class="btn btn-lg btn-primary btn-block my-3" type="submit">Register</button>
+            <input asp-for="ServiceID" type="number" class="form-control my-3" disabled>
+            <input asp-for="ClientId" class="form-control my-3" disabled>
+            <button class="btn btn-lg btn-primary btn-block my-3" type="submit">Edit</button>
         </form>
     </div>
 </div>
