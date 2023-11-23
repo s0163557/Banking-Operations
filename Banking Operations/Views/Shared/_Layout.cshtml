@@ -17,23 +17,19 @@
         <header class="mb-auto cover-container">
             <div>
             <nav class="nav nav-masthead justify-content-center float-md-end">
-                <div class="container-fluid">
+                <div class="container-fluid gx-5">
                     <a aria-current="page" class="navbar-brand float-md-start mb-0" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                                aria-current="page" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                             @*<a class="nav-link " asp-area="" asp-controller="Contacts" asp-action="Index">Свяжитесь с нами!</a>*@
                             @if (!SignInManager.IsSignedIn(User))
                             {
-                                    <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
 
                                     <a class="nav-link " asp-area="" asp-controller="Account" asp-action="Register">Зарегистрироваться</a>
                             }
                             else
                             {
-                                    <a class="nav-link " asp-area="" asp-controller="Banking" asp-action="Index">Услуги</a>
+                                    <a class="nav-link" asp-area="" asp-controller="Banking" asp-action="Index">Услуги</a>
                                 <form asp-controller="Account" asp-action="Logout">
                                     <button class="btn btn-outline-danger mx-3 my-sm-0">Выйти</button>
                                 </form>

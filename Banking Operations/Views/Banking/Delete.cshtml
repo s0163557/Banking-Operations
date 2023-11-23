@@ -10,9 +10,9 @@
                     <span><b>Извините!</b> - <font color="red">@TempData["Error"]</font></span>
                 </div>
             }
-            <input disabled asp-for="BankServiceName" id="inputEmail" class="form-control my-3" placeholder="Название услуги" required autofocus>
+            <input disabled asp-for="BankServiceName"  class="form-control my-3" placeholder="Название услуги" required autofocus>
             <span asp-validation-for="BankServiceName"></span>
-            <input disabled asp-for="TermOfRendering" id="inputEmail" class="form-control my-3" placeholder="Условия" required>
+            <input disabled asp-for="TermOfRendering"  class="form-control my-3" placeholder="Срок оказания" required>
             <span asp-validation-for="TermOfRendering"></span>
 
             <select disabled asp-for="ComissionType" class="form-select">
@@ -24,12 +24,12 @@
             </select>
             <span asp-validation-for="ComissionType"></span>
 
-            <input disabled asp-for="Debt" type="number" id="inputEmail" class="form-control my-3" placeholder="Долг" required>
+            <input disabled asp-for="Debt" type="number"  class="form-control my-3" placeholder="Долг" required>
             <span asp-validation-for="Debt"></span>
         </form>
 
         <form class="form-signin" method="post" asp-controller="Banking" asp-action="Delete">
-            <input disabled asp-for="ServiceID" type="number" id="inputEmail" class="form-control my-3" placeholder="Долг" required>
+            <input disabled asp-for="ServiceID" type="number"  class="form-control my-3" placeholder="Долг" required>
             <button class="btn btn-lg btn-primary btn-block my-3" type="submit">Delete</button>
         </form>
     </div>

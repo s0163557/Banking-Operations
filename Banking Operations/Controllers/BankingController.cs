@@ -81,7 +81,8 @@ namespace Banking_Operations.Controllers
                 TermOfRendering = newBankService.TermOfRendering,
                 ComissionType = newBankService.ComissionType,
                 Debt = newBankService.Debt,
-                ClientId = newBankService.ClientId
+                ClientId = newBankService.ClientId,
+                BankServiceState = newBankService.BankServiceStatus
             };
             return View(bankingModel);
         }
@@ -90,14 +91,14 @@ namespace Banking_Operations.Controllers
         public async Task<IActionResult> Edit(BankingModel bankingModel)
         {
             Client client = await _clientManager.FindByNameAsync(User.Identity.Name);
-
             var bankService = new BankService
             {
+                Id = bankingModel.ServiceID,
                 BankServiceName = bankingModel.BankServiceName,
                 TermOfRendering = bankingModel.TermOfRendering,
                 ComissionType = bankingModel.ComissionType,
                 Debt = bankingModel.Debt,
-                BankServiceStatus = false,
+                BankServiceStatus = Convert.ToBoolean(bankingModel.BankServiceState),
                 ClientId = client.Id
             };
             _repository.Update(bankService);

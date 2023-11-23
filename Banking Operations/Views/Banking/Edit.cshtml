@@ -12,7 +12,7 @@
             }
             <input asp-for="BankServiceName" class="form-control my-3" placeholder="Название услуги" required autofocus>
             <span asp-validation-for="BankServiceName"></span>
-            <input asp-for="TermOfRendering" class="form-control my-3" placeholder="Условия" required>
+            <input asp-for="TermOfRendering" type="date" class="form-control my-3" placeholder="Условия" required>
             <span asp-validation-for="TermOfRendering"></span>
 
             <select asp-for="ComissionType" class="form-select">
@@ -24,10 +24,15 @@
             </select>
             <span asp-validation-for="ComissionType"></span>
 
+            <select asp-for="BankServiceState" class="form-select my-3">
+                <option selected value="false">Не предоставляется</option>
+                <option value="true">Предоставляется</option>
+            </select>
+
             <input asp-for="Debt" type="number" class="form-control my-3" placeholder="Долг" required>
             <span asp-validation-for="Debt"></span>
-            <input asp-for="ServiceID" type="number" class="form-control my-3" disabled>
-            <input asp-for="ClientId" class="form-control my-3" disabled>
+            <input asp-for="ServiceID" type="hidden" class="form-control my-3">
+            <input asp-for="ClientId" type="hidden" class="form-control my-3" disabled>
             <button class="btn btn-lg btn-primary btn-block my-3" type="submit">Edit</button>
         </form>
     </div>
